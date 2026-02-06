@@ -1,0 +1,6 @@
+{
+  "$schema": "./schemas/compatibility-matrix.schema.json",
+  "_comment": "Kompatibilitätsmatrix: Welcher Nagel/Klammer passt in welches Gerät. Wird aus Herstellerdaten gepflegt.",
+  "version": "1.0.0",
+  "entries": []
+}

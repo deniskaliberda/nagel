@@ -1,0 +1,22 @@
+{
+  "name": "nagel-paul",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:storefront": "turbo run dev --filter=storefront",
+    "dev:backend": "turbo run dev --filter=backend",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "db:migrate": "turbo run db:migrate --filter=backend",
+    "db:seed": "turbo run db:seed --filter=backend",
+    "import:products": "turbo run import:products --filter=backend",
+    "import:compatibility": "turbo run import:compatibility --filter=backend"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0",
+    "typescript": "^5.7.0"
+  }
+}

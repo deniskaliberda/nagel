@@ -1,0 +1,151 @@
+{
+  "$schema": "./schemas/applications.schema.json",
+  "_comment": "Gewerk → Anwendung → Produkt Mapping. Definiert welche Produkte für welche Anwendungen empfohlen werden.",
+  "version": "1.0.0",
+  "gewerke": [
+    {
+      "id": "zimmerer",
+      "label": "Zimmerer",
+      "icon": "hammer",
+      "anwendungen": [
+        {
+          "slug": "dachlatten",
+          "name": "Dachlatten befestigen",
+          "description": "Befestigung von Dachlatten auf Sparren. Typisch: Streifennägel 50-90mm, Magazinwinkel 20-34°.",
+          "products": []
+        },
+        {
+          "slug": "schalung",
+          "name": "Schalung nageln",
+          "description": "Schalungsbretter für Beton oder Dachschalung befestigen.",
+          "products": []
+        },
+        {
+          "slug": "holzrahmenbau",
+          "name": "Holzrahmenbau",
+          "description": "Holzständerwände und Holzrahmenkonstruktionen. Hier auch LignoLoc als nachhaltige Option.",
+          "products": []
+        },
+        {
+          "slug": "balkenverbindungen",
+          "name": "Balkenverbindungen",
+          "description": "Verbindung von Balken und Sparren im Holzbau.",
+          "products": []
+        }
+      ]
+    },
+    {
+      "id": "dachdecker",
+      "label": "Dachdecker",
+      "icon": "roof",
+      "anwendungen": [
+        {
+          "slug": "dachpappe",
+          "name": "Dachpappe befestigen",
+          "description": "Dachpappe und Bitumenbahnen mit Breitkopfklammern fixieren.",
+          "products": []
+        },
+        {
+          "slug": "daemmplatten",
+          "name": "Dämmplatten nageln",
+          "description": "Holzfaser-Dämmplatten auf Dach oder Wand befestigen. LignoLoc vermeidet Wärmebrücken.",
+          "products": []
+        },
+        {
+          "slug": "lattung",
+          "name": "Lattung",
+          "description": "Konter- und Traglattung auf dem Dach befestigen.",
+          "products": []
+        }
+      ]
+    },
+    {
+      "id": "trockenbauer",
+      "label": "Trockenbauer",
+      "icon": "wall",
+      "anwendungen": [
+        {
+          "slug": "unterkonstruktion",
+          "name": "Unterkonstruktion",
+          "description": "Holz-Unterkonstruktionen für Trockenbau-Wände und Decken.",
+          "products": []
+        },
+        {
+          "slug": "daemmung",
+          "name": "Dämmung befestigen",
+          "description": "Dämmmaterial mit Tackern und Klammern fixieren.",
+          "products": []
+        },
+        {
+          "slug": "profile",
+          "name": "Profile verbinden",
+          "description": "Metallprofile im Trockenbau verbinden.",
+          "products": []
+        }
+      ]
+    },
+    {
+      "id": "schreiner",
+      "label": "Schreiner / Tischler",
+      "icon": "woodwork",
+      "anwendungen": [
+        {
+          "slug": "moebelbau",
+          "name": "Möbelbau",
+          "description": "Möbelkorpusse und Rahmen mit Brads und Klammern fixieren.",
+          "products": []
+        },
+        {
+          "slug": "leisten",
+          "name": "Leisten & Zierprofile",
+          "description": "Zierleisten, Fußleisten und Profile nahezu unsichtbar befestigen.",
+          "products": []
+        },
+        {
+          "slug": "plattenwerkstoffe",
+          "name": "Plattenwerkstoffe",
+          "description": "MDF, Sperrholz und andere Plattenwerkstoffe verarbeiten.",
+          "products": []
+        }
+      ]
+    },
+    {
+      "id": "bodenleger",
+      "label": "Bodenleger",
+      "icon": "floor",
+      "anwendungen": [
+        {
+          "slug": "parkett",
+          "name": "Parkett",
+          "description": "Parkett und Massivholzdielen mit Parkettklammern befestigen.",
+          "products": []
+        },
+        {
+          "slug": "sockelleisten",
+          "name": "Sockelleisten",
+          "description": "Sockelleisten mit dünnen Brads nahezu unsichtbar montieren.",
+          "products": []
+        }
+      ]
+    },
+    {
+      "id": "heimwerker",
+      "label": "Heimwerker",
+      "icon": "home",
+      "anwendungen": [
+        {
+          "slug": "allround",
+          "name": "Allround-Befestigung",
+          "description": "Vielseitige Kombi-Nagler für verschiedene Heimwerker-Projekte.",
+          "products": []
+        },
+        {
+          "slug": "holzprojekte",
+          "name": "Holzprojekte",
+          "description": "Gartenmöbel, Terrassenbau, Holzarbeiten aller Art.",
+          "products": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "_comment": "SEO Title/Description pro Seite. Wird von generateMetadata() in Next.js genutzt.",
+  "version": "1.0.0",
+  "pages": {
+    "/": {
+      "title": "Nagel Paul – Ihr Fachhandel für Nagler, Befestigungstechnik & LignoLoc",
+      "description": "Nagler, Tacker, Nägel & Klammern vom Fachmann. HiKOKI, Paslode, Prebena, BeA & LignoLoc Holznägel. Seit über 40 Jahren Ihr Partner für Befestigungstechnik."
+    },
+    "/produkte": {
+      "title": "Alle Produkte – Nagler, Befestigungsmittel & Zubehör | Nagel Paul",
+      "description": "Entdecken Sie unser komplettes Sortiment: Druckluft- und Akku-Nagler, Streifennägel, Coilnägel, Klammern, LignoLoc Holznägel und Zubehör."
+    },
+    "/anwendungen": {
+      "title": "Produkte nach Anwendung & Gewerk | Nagel Paul",
+      "description": "Finden Sie das richtige Werkzeug für Ihr Gewerk: Zimmerer, Dachdecker, Trockenbauer, Schreiner, Bodenleger – wir empfehlen die passende Lösung."
+    },
+    "/marken": {
+      "title": "Unsere Marken – HiKOKI, Paslode, Prebena, BeA & mehr | Nagel Paul",
+      "description": "Qualitätsmarken für Profis: HiKOKI (Metabo HPT), Paslode, Prebena, BeA, Haubold, Senco, Fasco und Beck LignoLoc."
+    },
+    "/lignoloc": {
+      "title": "LignoLoc Holznägel – Nachhaltige Befestigung aus Buchenholz | Nagel Paul",
+      "description": "LignoLoc Holznägel: 66% weniger CO2, keine Wärmebrücken, bauaufsichtlich zugelassen. Die nachhaltige Revolution in der Befestigungstechnik."
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #1a1a2e;
+  --color-accent: #e94560;
+  --color-success: #0f9d58;
+  --color-warning: #f4b400;
+  --color-info: #4285f4;
+  --color-lignoloc: #2d5016;
+  --color-bg-alt: #f5f5f7;
+  --color-text-muted: #6b7280;
+
+  --font-inter: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-primary;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight;
+  }
+}

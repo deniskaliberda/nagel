@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "medusa develop",
+    "build": "medusa build",
+    "start": "medusa start",
+    "db:migrate": "medusa db:migrate",
+    "db:seed": "medusa exec ./src/scripts/seed-products.ts",
+    "import:products": "medusa exec ./src/scripts/seed-products.ts",
+    "import:compatibility": "medusa exec ./src/scripts/seed-products.ts -- --compatibility-only"
+  },
+  "dependencies": {
+    "@medusajs/medusa": "^2.0.0",
+    "@medusajs/framework": "^2.0.0"
+  },
+  "devDependencies": {
+    "@medusajs/cli": "^2.0.0",
+    "typescript": "^5.7.0"
+  }
+}
