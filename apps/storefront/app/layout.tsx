@@ -1,14 +1,7 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import { Header } from "@/components/navigation/Header"
+import Header from "@/components/navigation/Header"
 import { Footer } from "@/components/layout/Footer"
 import "./globals.css"
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-})
 
 export const metadata: Metadata = {
   title: {
@@ -53,8 +46,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="de" className={inter.variable}>
-      <body className="flex min-h-screen flex-col font-sans antialiased">
+    <html lang="de">
+      <body className="flex min-h-screen flex-col font-sans antialiased" style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />
