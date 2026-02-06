@@ -1,35 +1,47 @@
 /**
- * Format a price amount in EUR (Euro) currency.
- *
- * @param amount - The price amount in cents (smallest currency unit)
- * @returns Formatted price string (e.g., "12,99 \u20ac")
+ * Format price from cents to EUR string
  */
-export function formatPrice(amount: number): string {
+export function formatPrice(cents: number): string {
   return new Intl.NumberFormat("de-DE", {
     style: "currency",
     currency: "EUR",
-  }).format(amount / 100);
+  }).format(cents / 100)
 }
 
 /**
- * Generate a URL-safe slug from a string.
+ * German-aware slugify
  */
 export function slugify(text: string): string {
   return text
     .toLowerCase()
-    .replace(/[äÄ]/g, "ae")
-    .replace(/[öÖ]/g, "oe")
-    .replace(/[üÜ]/g, "ue")
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
     .replace(/ß/g, "ss")
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .trim();
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
 }
 
 /**
- * Concatenate class names, filtering out falsy values.
+ * Generate breadcrumb items from path segments
+ */
+export function generateBreadcrumbs(
+  segments: { label: string; href: string }[]
+): { label: string; href: string }[] {
+  return [{ label: "Home", href: "/" }, ...segments]
+}
+
+/**
+ * Truncate text to a maximum length
+ */
+export function truncate(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text
+  return text.slice(0, maxLength).replace(/\s+\S*$/, "") + "…"
+}
+
+/**
+ * cn - simple class name merger (no clsx dependency)
  */
 export function cn(...classes: (string | undefined | null | false)[]): string {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(" ")
 }

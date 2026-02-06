@@ -1,55 +1,70 @@
-/**
- * Placeholder types for the Nagel Paul storefront.
- * These will be expanded as the application grows.
- */
+export interface Product {
+  id: string
+  name: string
+  handle: string
+  description: string
+  brand: string
+  sku: string
+  categorySlug: string
+  categoryName: string
+  price: number // cents
+  compareAtPrice?: number
+  images: string[]
+  thumbnail?: string
+  isLignoLoc: boolean
+  availability: "in_stock" | "low_stock" | "out_of_stock"
+  techSpecs: TechSpec[]
+  variants: ProductVariant[]
+}
 
-export type Product = {
-  id: string;
-  title: string;
-  handle: string;
-  description: string | null;
-  thumbnail: string | null;
-  variants: ProductVariant[];
-};
+export interface ProductVariant {
+  id: string
+  title: string
+  sku: string
+  price: number
+  inventoryQuantity: number
+}
 
-export type ProductVariant = {
-  id: string;
-  title: string;
-  sku: string | null;
-  prices: Price[];
-};
+export interface TechSpec {
+  label: string
+  value: string
+}
 
-export type Price = {
-  amount: number;
-  currency_code: string;
-};
+export interface Category {
+  id: string
+  name: string
+  handle: string
+  description: string
+  parentId?: string
+  productCount: number
+}
 
-export type Category = {
-  id: string;
-  name: string;
-  handle: string;
-  description: string | null;
-  parent_category_id: string | null;
-};
+export interface Brand {
+  slug: string
+  name: string
+  description: string
+  logo?: string
+  productCount: number
+}
 
-export type Brand = {
-  id: string;
-  name: string;
-  handle: string;
-  logo: string | null;
-};
+export interface Gewerk {
+  slug: string
+  name: string
+  description: string
+  icon: string
+  anwendungen: Anwendung[]
+}
 
-export type CartItem = {
-  id: string;
-  variant_id: string;
-  quantity: number;
-  unit_price: number;
-};
+export interface Anwendung {
+  slug: string
+  name: string
+  description: string
+  gewerk: string
+}
 
-export type SearchResult = {
-  id: string;
-  title: string;
-  handle: string;
-  description: string | null;
-  thumbnail: string | null;
-};
+export interface ApplicationRecommendation {
+  category: "device" | "fastener" | "accessory"
+  product: Product
+  reason: string
+  lignolocAlternative?: Product
+}
