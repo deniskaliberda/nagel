@@ -1,41 +1,64 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import { Header } from "@/components/navigation/Header"
+import { Footer } from "@/components/layout/Footer"
+import "./globals.css"
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
-});
+})
 
 export const metadata: Metadata = {
   title: {
-    default: "Nagel Paul - Ihr Fachhandel für Befestigungstechnik",
+    default: "Nagel Paul – Ihr Fachhandel für Befestigungstechnik",
     template: "%s | Nagel Paul",
   },
   description:
-    "Nagel Paul - Ihr zuverlässiger Partner für professionelle Befestigungstechnik. Nägel, Schrauben, Klammern und innovative LignoLoc Holznägel für Handwerk und Industrie.",
+    "Nagel Paul – Ihr zuverlässiger Partner für professionelle Befestigungstechnik. Nagler, Tacker, Nägel, Klammern und innovative LignoLoc Holznägel für Handwerk und Industrie.",
   keywords: [
     "Befestigungstechnik",
+    "Nagler",
+    "Tacker",
     "Nägel",
-    "Schrauben",
     "Klammern",
     "LignoLoc",
     "Holznägel",
+    "HiKOKI",
+    "Paslode",
+    "Prebena",
+    "BeA",
     "Nagel Paul",
-    "Handwerk",
-    "Industrie",
   ],
-};
+  metadataBase: new URL("https://nagel-paul.de"),
+  alternates: {
+    canonical: "/",
+    languages: { "de-DE": "/" },
+  },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    siteName: "Nagel Paul",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="de" className={inter.variable}>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="flex min-h-screen flex-col font-sans antialiased">
+        <Header />
+        <div className="flex-1">{children}</div>
+        <Footer />
+      </body>
     </html>
-  );
+  )
 }
