@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useCallback, useRef, useEffect } from "react"
+import { getSearchSuggestions } from "@/lib/meilisearch"
 
 export interface SearchResult {
   id: string
@@ -69,6 +70,27 @@ function searchLocalCatalog(query: string): SearchResult[] {
     .map((s) => s.product)
 }
 
+async function searchViaMeilisearch(query: string): Promise<SearchResult[] | null> {
+  try {
+    const meiliHost = process.env.NEXT_PUBLIC_MEILISEARCH_HOST
+    if (!meiliHost) return null
+
+    const response = await getSearchSuggestions(query, 8)
+    return response.hits.map((hit) => ({
+      id: hit.id,
+      name: hit.name,
+      slug: hit.handle,
+      category: hit.categoryName,
+      categorySlug: hit.categorySlug,
+      brand: hit.brand,
+      image: hit.thumbnail,
+      price: hit.price,
+    }))
+  } catch {
+    return null
+  }
+}
+
 export function useSearch() {
   const [state, setState] = useState<SearchState>({
     query: "",
@@ -90,11 +112,11 @@ export function useSearch() {
       return
     }
 
-    debounceRef.current = setTimeout(() => {
+    debounceRef.current = setTimeout(async () => {
       try {
-        // Client-side search against local product catalog
-        // TODO: Replace with Meilisearch API call when backend is connected
-        const results = searchLocalCatalog(query)
+        // Try Meilisearch first; fall back to local catalog
+        const meiliResults = await searchViaMeilisearch(query)
+        const results = meiliResults ?? searchLocalCatalog(query)
         setState((prev) => ({ ...prev, results, isLoading: false }))
       } catch {
         setState((prev) => ({ ...prev, results: [], isLoading: false }))

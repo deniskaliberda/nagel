@@ -3,8 +3,7 @@ import type { SubscriberArgs, SubscriberConfig } from "@medusajs/framework"
 /**
  * Subscriber: product.created
  *
- * Triggered whenever a new product is created in the catalog.
- * Intended to sync the product to Meilisearch for storefront search.
+ * Syncs newly created products to Meilisearch for storefront search.
  */
 export default async function productCreatedHandler({
   event,
@@ -12,25 +11,35 @@ export default async function productCreatedHandler({
 }: SubscriberArgs<{ id: string }>) {
   const productId = event.data.id
 
-  // TODO: Resolve Meilisearch client from container
-  // const searchService = container.resolve("searchService")
+  try {
+    const productService = container.resolve("productModuleService") as any
+    const product = await productService.retrieveProduct(productId, {
+      relations: ["variants", "categories", "images"],
+    })
 
-  // TODO: Fetch full product data
-  // const productService = container.resolve("productModuleService")
-  // const product = await productService.retrieveProduct(productId)
+    const searchDocument = {
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      handle: product.handle,
+      status: product.status,
+      thumbnail: product.thumbnail,
+      categories: product.categories?.map((c: any) => c.name) ?? [],
+      tags: product.tags?.map((t: any) => t.value) ?? [],
+      metadata: product.metadata ?? {},
+      created_at: product.created_at,
+    }
 
-  // TODO: Index product in Meilisearch
-  // await searchService.addDocuments("products", [
-  //   {
-  //     id: product.id,
-  //     title: product.title,
-  //     description: product.description,
-  //     handle: product.handle,
-  //     // ... additional fields for search
-  //   },
-  // ])
-
-  console.log(`[product-created] Product ${productId} created - Meilisearch sync pending`)
+    try {
+      const searchService = container.resolve("searchService") as any
+      await searchService.addDocuments("products", [searchDocument])
+      console.log(`[product-created] Indexed product ${productId} in Meilisearch`)
+    } catch {
+      console.log(`[product-created] Product ${productId} created (Meilisearch not configured)`)
+    }
+  } catch (error) {
+    console.error(`[product-created] Failed to process product ${productId}:`, error)
+  }
 }
 
 export const config: SubscriberConfig = {

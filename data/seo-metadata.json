@@ -10,17 +10,113 @@
       "title": "Alle Produkte – Nagler, Befestigungsmittel & Zubehör | Nagel Paul",
       "description": "Entdecken Sie unser komplettes Sortiment: Druckluft- und Akku-Nagler, Streifennägel, Coilnägel, Klammern, LignoLoc Holznägel und Zubehör."
     },
+    "/produkte/druckluft-nagler": {
+      "title": "Druckluft-Nagler – Profi-Geräte für Zimmerer & Dachdecker | Nagel Paul",
+      "description": "Druckluft-Streifennagler und Coilnagler von HiKOKI, Prebena und BeA. Robuste Geräte für den täglichen Einsatz auf der Baustelle."
+    },
+    "/produkte/akku-nagler": {
+      "title": "Akku-Nagler – Kabellos nageln ohne Kompressor | Nagel Paul",
+      "description": "Akku-Nagler von HiKOKI, Paslode und Senco. Volle Leistung ohne Kabel und Kompressor – ideal für flexible Einsätze."
+    },
+    "/produkte/gas-nagler": {
+      "title": "Gas-Nagler – Kraftvolle Befestigung ohne Schlauch | Nagel Paul",
+      "description": "Gas-betriebene Nagler von Paslode für maximale Mobilität auf der Baustelle. Bewährt bei Zimmerern und Dachdeckern."
+    },
+    "/produkte/tacker": {
+      "title": "Tacker – Druckluft & Akku-Tacker für Profis | Nagel Paul",
+      "description": "Professionelle Tacker von Haubold, BeA und Prebena. Für Klammern, Brads und Pins in Trockenbau, Polsterei und Schreinerei."
+    },
+    "/produkte/streifennaegel": {
+      "title": "Streifennägel – Papiergebunden & Drahtgebunden | Nagel Paul",
+      "description": "Streifennägel in allen Ausführungen: 20-34° Magazinwinkel, verzinkt, blank oder Edelstahl. Von Prebena, Paslode und BeA."
+    },
+    "/produkte/coilnaegel": {
+      "title": "Coilnägel – Drahtgebundene Rollennägel | Nagel Paul",
+      "description": "Coilnägel für hohe Nagelkapazität. Ring, Schraub oder glatt. Ideal für Palettenbau, Holzrahmenbau und Schalungsarbeiten."
+    },
+    "/produkte/lignoloc": {
+      "title": "LignoLoc Holznägel – Nachhaltig bauen mit Buchenholz | Nagel Paul",
+      "description": "LignoLoc Holznägel von Beck: 66% weniger CO2, keine Wärmebrücken, vollständig recyclebar. In verschiedenen Abmessungen verfügbar."
+    },
+    "/produkte/klammern": {
+      "title": "Klammern – Schmalrücken & Breitrücken für Profis | Nagel Paul",
+      "description": "Heftklammern und Befestigungsklammern von BeA, Prebena und Haubold. Für Tacker aller Art."
+    },
+    "/produkte/brads-pins": {
+      "title": "Brads & Pins – Nahezu unsichtbare Befestigung | Nagel Paul",
+      "description": "Brads (Stauchkopfnägel) und Pins für Schreiner und Tischler. 18Ga und 23Ga von Senco, Paslode und Prebena."
+    },
     "/anwendungen": {
       "title": "Produkte nach Anwendung & Gewerk | Nagel Paul",
       "description": "Finden Sie das richtige Werkzeug für Ihr Gewerk: Zimmerer, Dachdecker, Trockenbauer, Schreiner, Bodenleger – wir empfehlen die passende Lösung."
+    },
+    "/anwendungen/zimmerer": {
+      "title": "Befestigungstechnik für Zimmerer – Nagler & Nägel | Nagel Paul",
+      "description": "Die richtige Ausrüstung für Zimmerer: Streifennagler, Coilnagler und passende Nägel für Dachlatten, Schalung und Holzrahmenbau."
+    },
+    "/anwendungen/dachdecker": {
+      "title": "Befestigungstechnik für Dachdecker – Tacker & Nagler | Nagel Paul",
+      "description": "Dachpappe, Dämmplatten und Lattung befestigen: Die richtigen Geräte und Befestigungsmittel für Dachdecker."
+    },
+    "/anwendungen/trockenbauer": {
+      "title": "Befestigungstechnik für Trockenbauer | Nagel Paul",
+      "description": "Unterkonstruktion, Dämmung und Profile: Nagler, Tacker und passende Befestigungsmittel für den Trockenbau."
+    },
+    "/anwendungen/schreiner": {
+      "title": "Befestigungstechnik für Schreiner & Tischler | Nagel Paul",
+      "description": "Brads, Pins und Klammern für Möbelbau, Leisten und Plattenwerkstoffe. Nahezu unsichtbare Befestigung für Profis."
+    },
+    "/anwendungen/bodenleger": {
+      "title": "Befestigungstechnik für Bodenleger – Parkett & Sockelleisten | Nagel Paul",
+      "description": "Parkettklammern und Brads für die professionelle Bodenverlegung. Tacker und Nagler von Prebena und Senco."
+    },
+    "/anwendungen/heimwerker": {
+      "title": "Nagler & Tacker für Heimwerker – Einsteigergeräte | Nagel Paul",
+      "description": "Kombi-Nagler und Einsteiger-Tacker für ambitionierte Heimwerker. Fachberatung inklusive."
     },
     "/marken": {
       "title": "Unsere Marken – HiKOKI, Paslode, Prebena, BeA & mehr | Nagel Paul",
       "description": "Qualitätsmarken für Profis: HiKOKI (Metabo HPT), Paslode, Prebena, BeA, Haubold, Senco, Fasco und Beck LignoLoc."
     },
+    "/marken/hikoki": {
+      "title": "HiKOKI (Metabo HPT) Nagler & Zubehör | Nagel Paul",
+      "description": "HiKOKI Akku-Nagler, Druckluft-Nagler und MultiVolt-Akkus. Japanische Profi-Qualität für anspruchsvolle Handwerker."
+    },
+    "/marken/paslode": {
+      "title": "Paslode Gasnagler & Befestigungsmittel | Nagel Paul",
+      "description": "Paslode IM90i, IM350+ und Befestigungsmittel. Der Klassiker unter den Gas-Naglern für Zimmerleute und Dachdecker."
+    },
+    "/marken/prebena": {
+      "title": "Prebena Druckluft-Nagler, Nägel & Kompressoren | Nagel Paul",
+      "description": "Prebena – Made in Germany: Druckluft-Nagler, Streifennägel, Coilnägel und Kompressoren für den Profi."
+    },
+    "/marken/bea": {
+      "title": "BeA Tacker, Nagler & Klammern | Nagel Paul",
+      "description": "BeA Druckluft-Geräte und Befestigungsmittel. Bewährt in Verpackung, Holzbau und Polsterei."
+    },
     "/lignoloc": {
       "title": "LignoLoc Holznägel – Nachhaltige Befestigung aus Buchenholz | Nagel Paul",
       "description": "LignoLoc Holznägel: 66% weniger CO2, keine Wärmebrücken, bauaufsichtlich zugelassen. Die nachhaltige Revolution in der Befestigungstechnik."
+    },
+    "/kontakt": {
+      "title": "Kontakt – Fachberatung & Kundenservice | Nagel Paul",
+      "description": "Kontaktieren Sie Nagel Paul für Fachberatung rund um Nagler, Befestigungstechnik und LignoLoc. Telefonisch, per E-Mail oder persönlich."
+    },
+    "/impressum": {
+      "title": "Impressum | Nagel Paul",
+      "description": "Impressum der JPS GmbH & Co. KG (Nagel Paul) – Angaben gemäß § 5 TMG."
+    },
+    "/datenschutz": {
+      "title": "Datenschutzerklärung | Nagel Paul",
+      "description": "Datenschutzerklärung der JPS GmbH & Co. KG – Informationen zum Umgang mit Ihren personenbezogenen Daten."
+    },
+    "/agb": {
+      "title": "Allgemeine Geschäftsbedingungen (AGB) | Nagel Paul",
+      "description": "AGB der JPS GmbH & Co. KG (Nagel Paul) – Allgemeine Geschäftsbedingungen für den Online-Shop."
+    },
+    "/widerruf": {
+      "title": "Widerrufsbelehrung | Nagel Paul",
+      "description": "Widerrufsbelehrung der JPS GmbH & Co. KG – Informationen zu Ihrem 14-tägigen Widerrufsrecht."
     }
   }
 }

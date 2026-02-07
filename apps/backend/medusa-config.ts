@@ -19,22 +19,11 @@ export default defineConfig({
     {
       resolve: "./src/modules/application",
     },
-  ],
-  plugins: [
-    // Stripe payment provider
+    // Stripe payment provider – enable when API key is configured
     // {
     //   resolve: "@medusajs/medusa/payment-stripe",
     //   options: {
     //     apiKey: process.env.STRIPE_API_KEY,
-    //   },
-    // },
-
-    // Resend notification provider
-    // {
-    //   resolve: "@medusajs/medusa/notification-resend",
-    //   options: {
-    //     apiKey: process.env.RESEND_API_KEY,
-    //     fromEmail: process.env.RESEND_FROM_EMAIL ?? "info@nagel-paul.de",
     //   },
     // },
   ],

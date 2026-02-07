@@ -2,5 +2,141 @@
   "$schema": "./schemas/compatibility-matrix.schema.json",
   "_comment": "Kompatibilitätsmatrix: Welcher Nagel/Klammer passt in welches Gerät. Wird aus Herstellerdaten gepflegt.",
   "version": "1.0.0",
-  "entries": []
+  "entries": [
+    {
+      "device_id": "hikoki-nr1890dbcl",
+      "device_name": "HiKOKI NR1890DBCL Akku-Streifennagler",
+      "device_manufacturer": "HiKOKI",
+      "fastener_product_id": "prebena-rk28-80-nk",
+      "fastener_sku": "RK28/80NK",
+      "compatible": true,
+      "notes": "Empfohlene Nägel, 50-90mm Länge"
+    },
+    {
+      "device_id": "hikoki-nr1890dbcl",
+      "device_name": "HiKOKI NR1890DBCL Akku-Streifennagler",
+      "device_manufacturer": "HiKOKI",
+      "fastener_product_id": "prebena-rk28-65-bk",
+      "fastener_sku": "RK28/65BK",
+      "compatible": true,
+      "notes": "Kompatibel, 50-90mm Länge"
+    },
+    {
+      "device_id": "hikoki-nr90gc1",
+      "device_name": "HiKOKI NR90GC1 Druckluft-Streifennagler",
+      "device_manufacturer": "HiKOKI",
+      "fastener_product_id": "prebena-rk28-80-nk",
+      "fastener_sku": "RK28/80NK",
+      "compatible": true,
+      "notes": "Empfohlene Nägel, 50-90mm"
+    },
+    {
+      "device_id": "hikoki-nr90gc1",
+      "device_name": "HiKOKI NR90GC1 Druckluft-Streifennagler",
+      "device_manufacturer": "HiKOKI",
+      "fastener_product_id": "prebena-rk28-65-bk",
+      "fastener_sku": "RK28/65BK",
+      "compatible": true,
+      "notes": null
+    },
+    {
+      "device_id": "paslode-im90i",
+      "device_name": "Paslode IM90i Gasnagler",
+      "device_manufacturer": "Paslode",
+      "fastener_product_id": "paslode-brads-16ga-50mm",
+      "fastener_sku": "BRADS-16-50",
+      "compatible": false,
+      "notes": "Brads nicht kompatibel – Streifennägel im D-Kopf-Format verwenden"
+    },
+    {
+      "device_id": "bea-sks-650-228",
+      "device_name": "BeA Druckluft-Nagler SKS 650-228",
+      "device_manufacturer": "BeA",
+      "fastener_product_id": "bea-klammern-380-14-nk",
+      "fastener_sku": "380/14NK",
+      "compatible": true,
+      "notes": "Empfohlene Klammern für dieses Gerät"
+    },
+    {
+      "device_id": "beck-fasco-f44-ac",
+      "device_name": "Beck FASCO F44 AC LignoLoc Holznagelgerät",
+      "device_manufacturer": "Beck (LignoLoc)",
+      "fastener_product_id": "lignoloc-37x50",
+      "fastener_sku": "LL-37x50",
+      "compatible": true,
+      "notes": "LignoLoc Holznägel 3,7 x 50mm – Standardnagel für F44"
+    },
+    {
+      "device_id": "beck-fasco-f44-ac",
+      "device_name": "Beck FASCO F44 AC LignoLoc Holznagelgerät",
+      "device_manufacturer": "Beck (LignoLoc)",
+      "fastener_product_id": "lignoloc-37x38",
+      "fastener_sku": "LL-37x38",
+      "compatible": true,
+      "notes": "LignoLoc Holznägel 3,7 x 38mm – für dünnere Materialien"
+    },
+    {
+      "device_id": "beck-fasco-f44-ac",
+      "device_name": "Beck FASCO F44 AC LignoLoc Holznagelgerät",
+      "device_manufacturer": "Beck (LignoLoc)",
+      "fastener_product_id": "lignoloc-37x55",
+      "fastener_sku": "LL-37x55",
+      "compatible": true,
+      "notes": "LignoLoc Holznägel 3,7 x 55mm"
+    },
+    {
+      "device_id": "beck-fasco-f58-ac",
+      "device_name": "Beck FASCO F58 AC LignoLoc",
+      "device_manufacturer": "Beck (LignoLoc)",
+      "fastener_product_id": "lignoloc-47x65",
+      "fastener_sku": "LL-47x65",
+      "compatible": true,
+      "notes": "LignoLoc Holznägel 4,7 x 65mm – für den F58"
+    },
+    {
+      "device_id": "beck-fasco-f58-ac",
+      "device_name": "Beck FASCO F58 AC LignoLoc",
+      "device_manufacturer": "Beck (LignoLoc)",
+      "fastener_product_id": "lignoloc-37x50",
+      "fastener_sku": "LL-37x50",
+      "compatible": true,
+      "notes": "LignoLoc Holznägel 3,7 x 50mm – auch im F58 verwendbar"
+    },
+    {
+      "device_id": "beck-fasco-f58-ac",
+      "device_name": "Beck FASCO F58 AC LignoLoc",
+      "device_manufacturer": "Beck (LignoLoc)",
+      "fastener_product_id": "lignoloc-37x55",
+      "fastener_sku": "LL-37x55",
+      "compatible": true,
+      "notes": null
+    },
+    {
+      "device_id": "senco-finish-pro-18mg",
+      "device_name": "Senco Finish Pro 18Mg Akku-Bradnagler",
+      "device_manufacturer": "Senco",
+      "fastener_product_id": "paslode-brads-16ga-50mm",
+      "fastener_sku": "BRADS-16-50",
+      "compatible": true,
+      "notes": "18Ga Brads, 16-50mm Länge"
+    },
+    {
+      "device_id": "haubold-t28-65-st",
+      "device_name": "Haubold Druckluft-Tacker T28/65 ST",
+      "device_manufacturer": "Haubold",
+      "fastener_product_id": "bea-klammern-380-14-nk",
+      "fastener_sku": "380/14NK",
+      "compatible": true,
+      "notes": "Kompatibel mit Schmalrückenklammern Typ 380"
+    },
+    {
+      "device_id": "prebena-cnw-coilnagler",
+      "device_name": "Prebena Coilnagler CNW",
+      "device_manufacturer": "Prebena",
+      "fastener_product_id": "prebena-cnw-25-65-bk",
+      "fastener_sku": "CNW25/65BK",
+      "compatible": true,
+      "notes": "Empfohlene Coilnägel, 25-65mm drahtgebunden"
+    }
+  ]
 }

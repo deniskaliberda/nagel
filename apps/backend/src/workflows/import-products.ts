@@ -4,22 +4,49 @@ import {
   StepResponse,
   WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk"
+import * as fs from "fs"
+import * as path from "path"
+
+interface RawProduct {
+  name: string
+  slug: string
+  description: string
+  sku?: string
+  price?: number
+  images?: string[]
+  category?: string
+  brand?: string
+  metadata?: Record<string, unknown>
+}
 
 /**
- * Step: Fetch products from external source (e.g., Shopware export, CSV, JSON).
+ * Step: Fetch products from external source (Shopware export JSON/CSV).
  */
 const fetchExternalProductsStep = createStep(
   "fetch-external-products",
-  async (input: { sourceUrl?: string; filePath?: string }, { container }) => {
-    // TODO: Implement fetching from Shopware export or file
-    // This could read from a JSON dump, CSV, or call the Shopware API
-
+  async (input: { sourceUrl?: string; filePath?: string }) => {
     console.log("[import-products] Fetching external product data...")
 
-    const rawProducts: Record<string, unknown>[] = []
+    const rawProducts: RawProduct[] = []
 
-    // Placeholder: parse source data into normalized product records
-    // rawProducts = await parseShopwareExport(input.filePath)
+    const filePath = input.filePath
+      ? path.resolve(input.filePath)
+      : path.resolve(process.cwd(), "../../data/products/shopware-export.json")
+
+    if (fs.existsSync(filePath)) {
+      const fileContent = fs.readFileSync(filePath, "utf-8")
+      const parsed = JSON.parse(fileContent)
+
+      if (Array.isArray(parsed)) {
+        rawProducts.push(...parsed)
+      } else if (parsed.products && Array.isArray(parsed.products)) {
+        rawProducts.push(...parsed.products)
+      }
+
+      console.log(`[import-products] Loaded ${rawProducts.length} products from ${filePath}`)
+    } else {
+      console.log(`[import-products] File not found: ${filePath}`)
+    }
 
     return new StepResponse(rawProducts)
   }
@@ -30,21 +57,19 @@ const fetchExternalProductsStep = createStep(
  */
 const transformProductsStep = createStep(
   "transform-products",
-  async (rawProducts: Record<string, unknown>[], { container }) => {
+  async (rawProducts: RawProduct[]) => {
     console.log(`[import-products] Transforming ${rawProducts.length} products...`)
 
-    // TODO: Map Shopware fields to Medusa product fields
-    // - title, handle, description
-    // - variants with prices
-    // - images / thumbnails
-    // - categories -> collections
-    // - custom metadata (Gewerk, Anwendung, compatibility)
-
     const medusaProducts = rawProducts.map((raw) => ({
-      title: raw.name as string ?? "Untitled",
-      handle: raw.slug as string ?? "",
-      description: raw.description as string ?? "",
-      // ... map remaining fields
+      title: raw.name ?? "Untitled",
+      handle: raw.slug ?? "",
+      description: raw.description ?? "",
+      status: "published" as const,
+      metadata: {
+        brand: raw.brand,
+        imported_sku: raw.sku,
+        ...(raw.metadata || {}),
+      },
     }))
 
     return new StepResponse(medusaProducts)
@@ -57,19 +82,31 @@ const transformProductsStep = createStep(
 const upsertProductsStep = createStep(
   "upsert-products",
   async (
-    products: Array<{ title: string; handle: string; description: string }>,
+    products: Array<{
+      title: string
+      handle: string
+      description: string
+      status: string
+      metadata: Record<string, unknown>
+    }>,
     { container }
   ) => {
     console.log(`[import-products] Upserting ${products.length} products into Medusa...`)
 
-    // TODO: Use the product module service to create or update products
-    // const productService = container.resolve("productModuleService")
-    //
-    // for (const product of products) {
-    //   await productService.upsertProducts([product])
-    // }
+    const productService = container.resolve("productModuleService") as any
+    let imported = 0
 
-    return new StepResponse({ imported: products.length })
+    for (const product of products) {
+      try {
+        await productService.upsertProducts([product])
+        imported++
+      } catch (err) {
+        console.warn(`[import-products] Failed to upsert: ${product.title}`, err)
+      }
+    }
+
+    console.log(`[import-products] Successfully imported ${imported}/${products.length} products`)
+    return new StepResponse({ imported, total: products.length })
   }
 )
 
