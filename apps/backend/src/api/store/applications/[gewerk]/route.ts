@@ -12,7 +12,7 @@ export async function GET(
   req: MedusaRequest,
   res: MedusaResponse
 ): Promise<void> {
-  const { gewerk } = req.params
+  const gewerk = req.params.gewerk as string
 
   const applicationService = req.scope.resolve<ApplicationService>(
     APPLICATION_MODULE

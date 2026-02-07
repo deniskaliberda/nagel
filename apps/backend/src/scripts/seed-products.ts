@@ -1,4 +1,9 @@
-import type { ExecArgs } from "@medusajs/framework"
+import type { MedusaContainer } from "@medusajs/framework/types"
+
+interface SeedArgs {
+  container: MedusaContainer
+  args?: string[]
+}
 
 /**
  * Seed script: Import products from Shopware data export.
@@ -12,7 +17,7 @@ import type { ExecArgs } from "@medusajs/framework"
  * - Application areas (Gewerk / Anwendung mappings)
  * - Device-fastener compatibility data
  */
-export default async function seedProducts({ container, args }: ExecArgs) {
+export default async function seedProducts({ container, args }: SeedArgs) {
   const compatibilityOnly = args?.includes("--compatibility-only")
 
   console.log("[seed-products] Starting product seed...")

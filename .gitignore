@@ -36,5 +36,13 @@ pnpm-debug.log*
 .medusa/
 uploads/
 
+# Compiled JS output (TypeScript sources only)
+apps/**/*.js
+!apps/**/next.config.*
+!apps/**/postcss.config.*
+!apps/**/tailwind.config.ts
+packages/**/*.js
+scripts/**/*.js
+
 # Misc
 *.tsbuildinfo

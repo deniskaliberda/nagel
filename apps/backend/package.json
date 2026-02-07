@@ -12,11 +12,12 @@
     "import:compatibility": "medusa exec ./src/scripts/seed-products.ts -- --compatibility-only"
   },
   "dependencies": {
-    "@medusajs/medusa": "^2.0.0",
-    "@medusajs/framework": "^2.0.0"
+    "@medusajs/framework": "^2.0.0",
+    "@medusajs/medusa": "^2.0.0"
   },
   "devDependencies": {
     "@medusajs/cli": "^2.0.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.0"
   }
 }

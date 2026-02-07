@@ -12,7 +12,7 @@ export async function GET(
   req: MedusaRequest,
   res: MedusaResponse
 ): Promise<void> {
-  const { deviceId } = req.params
+  const deviceId = req.params.deviceId as string
 
   const compatibilityService = req.scope.resolve<CompatibilityService>(
     COMPATIBILITY_MODULE
