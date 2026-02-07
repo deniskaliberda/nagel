@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumbs from "@/components/navigation/Breadcrumbs";
+import { AddToCartButton } from "@/components/shop/AddToCartButton";
 import { formatPrice } from "@/lib/utils";
 
 type ProductPageProps = {
@@ -534,42 +535,17 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </div>
 
             {/* Quantity + Add to cart */}
-            <div className="mt-6 flex items-center gap-3">
-              {/* Quantity selector area */}
-              <div className="flex items-center rounded-lg border border-border">
-                <button
-                  type="button"
-                  className="flex h-12 w-12 items-center justify-center text-text-muted transition-colors hover:text-primary"
-                  aria-label="Menge verringern"
-                >
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M20 12H4" />
-                  </svg>
-                </button>
-                <span className="flex h-12 w-12 items-center justify-center border-x border-border text-center font-semibold text-primary">
-                  1
-                </span>
-                <button
-                  type="button"
-                  className="flex h-12 w-12 items-center justify-center text-text-muted transition-colors hover:text-primary"
-                  aria-label="Menge erhöhen"
-                >
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Add to cart button */}
-              <button
-                type="button"
-                className="flex h-12 flex-1 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-base font-semibold text-white transition-colors hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
-                </svg>
-                In den Warenkorb
-              </button>
+            <div className="mt-6">
+              <AddToCartButton
+                productId={product.slug}
+                variantId={product.slug}
+                name={product.title}
+                brand={product.brand}
+                price={product.price}
+                compareAtPrice={product.compareAtPrice}
+                sku={product.articleNumber}
+                disabled={product.availability === "out_of_stock"}
+              />
             </div>
 
             {/* Trust Icons */}

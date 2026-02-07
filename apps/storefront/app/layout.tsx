@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { ClientShell } from "@/components/providers/ClientShell"
 import Header from "@/components/navigation/Header"
 import { Footer } from "@/components/layout/Footer"
 import "./globals.css"
@@ -48,9 +49,11 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body className="flex min-h-screen flex-col font-sans antialiased" style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
-        <Header />
-        <div className="flex-1">{children}</div>
-        <Footer />
+        <ClientShell>
+          <Header />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </ClientShell>
       </body>
     </html>
   )

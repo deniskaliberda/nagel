@@ -1,3 +1,4 @@
+export { AddToCartButton } from "./AddToCartButton";
 export { ProductCard } from "./ProductCard";
 export { PriceDisplay } from "./PriceDisplay";
 export { TechSpecsTable } from "./TechSpecsTable";

@@ -184,7 +184,7 @@ export function SearchBar({
           event.preventDefault();
           if (highlightedIndex >= 0) {
             if (highlightedIndex < recentSearches.length) {
-              const selected = recentSearches[highlightedIndex];
+              const selected = recentSearches[highlightedIndex] ?? "";
               setQuery(selected);
               handleSubmit(selected);
             } else {
