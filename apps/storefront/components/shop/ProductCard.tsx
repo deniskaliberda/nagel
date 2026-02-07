@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { cn, formatPrice } from "@/lib/utils";
@@ -5,8 +7,10 @@ import {
   AvailabilityIndicator,
   type AvailabilityStatus,
 } from "./AvailabilityIndicator";
+import { useCartContext } from "@/components/providers/CartProvider";
 
-interface ProductCardProduct {
+export interface ProductCardProduct {
+  id?: string;
   title: string;
   brand: string;
   slug: string;
@@ -18,6 +22,7 @@ interface ProductCardProduct {
   thumbnail?: string | null;
   isLignoLoc: boolean;
   availability: AvailabilityStatus;
+  sku?: string;
 }
 
 interface ProductCardProps {
@@ -25,8 +30,52 @@ interface ProductCardProps {
   showQuickAdd?: boolean;
 }
 
+/** Category-based icon for product placeholder images */
+function ProductPlaceholderIcon({ category, isLignoLoc }: { category: string; isLignoLoc: boolean }) {
+  if (isLignoLoc) {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="h-16 w-16 text-[#2d5016]/30">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+      </svg>
+    );
+  }
+
+  const cat = category.toLowerCase();
+  // Nagler / Tacker - wrench/tool icon
+  if (cat.includes("nagler") || cat.includes("tacker") || cat.includes("akku") || cat.includes("gas") || cat.includes("druckluft")) {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="h-16 w-16 text-gray-300">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085" />
+      </svg>
+    );
+  }
+  // Nails, screws, staples - diagonal arrow / fastener
+  if (cat.includes("nagel") || cat.includes("klammer") || cat.includes("brad") || cat.includes("streif") || cat.includes("coil") || cat.includes("schraub") || cat.includes("pin")) {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="h-16 w-16 text-gray-300">
+        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 4.5-15 15m0 0h11.25m-11.25 0V8.25" />
+      </svg>
+    );
+  }
+  // Accessories - box icon
+  if (cat.includes("kompressor") || cat.includes("zubehoer") || cat.includes("ersatz") || cat.includes("schlauch")) {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="h-16 w-16 text-gray-300">
+        <path strokeLinecap="round" strokeLinejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+      </svg>
+    );
+  }
+  // Default - package icon
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="h-16 w-16 text-gray-300">
+      <path strokeLinecap="round" strokeLinejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0-3-3m3 3 3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+    </svg>
+  );
+}
+
 export function ProductCard({ product, showQuickAdd = true }: ProductCardProps) {
   const {
+    id,
     title,
     brand,
     slug,
@@ -36,17 +85,39 @@ export function ProductCard({ product, showQuickAdd = true }: ProductCardProps) 
     thumbnail,
     isLignoLoc,
     availability,
+    sku,
   } = product;
+
+  const { addItem } = useCartContext();
 
   const href = `/produkte/${categorySlug}/${slug}`;
   const hasDiscount =
     compareAtPrice !== undefined && compareAtPrice > price;
 
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addItem({
+      id: id ?? slug,
+      productId: id ?? slug,
+      variantId: `${slug}-default`,
+      name: title,
+      brand,
+      image: thumbnail ?? undefined,
+      price,
+      compareAtPrice,
+      sku: sku ?? slug.toUpperCase(),
+    });
+  };
+
   return (
     <article className="group relative flex flex-col rounded-lg border border-border bg-white transition-shadow duration-200 hover:shadow-lg">
       <Link href={href} className="flex flex-col flex-1">
         {/* Image area */}
-        <div className="relative aspect-square w-full overflow-hidden rounded-t-lg bg-gray-100">
+        <div className={cn(
+          "relative aspect-square w-full overflow-hidden rounded-t-lg",
+          isLignoLoc ? "bg-[#f0fdf4]" : "bg-gray-50"
+        )}>
           {thumbnail ? (
             <Image
               src={thumbnail}
@@ -57,21 +128,7 @@ export function ProductCard({ product, showQuickAdd = true }: ProductCardProps) 
             />
           ) : (
             <div className="flex h-full items-center justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1}
-                stroke="currentColor"
-                className="h-12 w-12 text-gray-300"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z"
-                />
-              </svg>
+              <ProductPlaceholderIcon category={categorySlug} isLignoLoc={isLignoLoc} />
             </div>
           )}
 
@@ -129,7 +186,8 @@ export function ProductCard({ product, showQuickAdd = true }: ProductCardProps) 
         <div className="px-4 pb-4">
           <button
             type="button"
-            className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            onClick={handleAddToCart}
+            className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-primary/90 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             In den Warenkorb
           </button>
