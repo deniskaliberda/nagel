@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import Link from "next/link"
 
 interface CartItem {
@@ -35,6 +35,10 @@ export function CartDrawer({
   onUpdateQuantity,
   onRemoveItem,
 }: CartDrawerProps) {
+  const [visible, setVisible] = useState(false)
+  const [animating, setAnimating] = useState(false)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
@@ -42,32 +46,53 @@ export function CartDrawer({
     [onClose]
   )
 
+  // Handle open/close with animation
   useEffect(() => {
     if (isOpen) {
+      setVisible(true)
+      // Trigger animation on next frame
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setAnimating(true)
+        })
+      })
       document.addEventListener("keydown", handleKeyDown)
       document.body.style.overflow = "hidden"
+    } else {
+      setAnimating(false)
+      // Wait for exit animation to complete before hiding
+      timerRef.current = setTimeout(() => {
+        setVisible(false)
+      }, 300)
     }
     return () => {
       document.removeEventListener("keydown", handleKeyDown)
       document.body.style.overflow = ""
+      if (timerRef.current) clearTimeout(timerRef.current)
     }
   }, [isOpen, handleKeyDown])
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
-  if (!isOpen) return null
+  if (!visible) return null
 
   return (
     <div className="fixed inset-0 z-50">
       {/* Overlay */}
       <div
-        className="absolute inset-0 bg-black/50 transition-opacity"
+        className={`absolute inset-0 bg-black transition-opacity duration-300 ease-out ${
+          animating ? "opacity-50" : "opacity-0"
+        }`}
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Drawer */}
-      <div className="absolute bottom-0 right-0 top-0 w-full max-w-md bg-white shadow-xl">
+      <div
+        className={`absolute bottom-0 right-0 top-0 w-full max-w-md bg-white shadow-xl transition-transform duration-300 ease-out ${
+          animating ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
         <div className="flex h-full flex-col">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-[#e5e7eb] px-4 py-4">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { HomeBestsellers } from "./HomeBestsellers"
 
 export const metadata: Metadata = {
   title: "Nagel Paul – Ihr Fachhandel für Nagler, Befestigungstechnik & LignoLoc",
@@ -65,67 +66,6 @@ const gewerke = [
   },
 ]
 
-const bestseller = [
-  {
-    title: "HiKOKI NR1890DBCL Akku-Streifennagler",
-    brand: "HiKOKI",
-    price: 59900,
-    slug: "hikoki-nr1890dbcl",
-    category: "akku-nagler",
-  },
-  {
-    title: "Paslode IM90i Gasnagler",
-    brand: "Paslode",
-    price: 89900,
-    slug: "paslode-im90i",
-    category: "gas-nagler",
-  },
-  {
-    title: "Prebena Streifennägel RK 28/80 NK",
-    brand: "Prebena",
-    price: 3490,
-    slug: "prebena-rk28-80-nk",
-    category: "streifennaegel",
-  },
-  {
-    title: "BeA Druckluft-Nagler SKS 650-228",
-    brand: "BeA",
-    price: 44900,
-    slug: "bea-sks-650-228",
-    category: "druckluft-nagler",
-  },
-  {
-    title: "Beck FASCO F44 AC LignoLoc",
-    brand: "Beck (LignoLoc)",
-    price: 129900,
-    slug: "beck-fasco-f44-ac-lignoloc",
-    category: "akku-nagler",
-    isLignoLoc: true,
-  },
-  {
-    title: "LignoLoc Holznägel 3,7 x 50mm",
-    brand: "Beck (LignoLoc)",
-    price: 4900,
-    slug: "lignoloc-holznaegel-37x50",
-    category: "lignoloc",
-    isLignoLoc: true,
-  },
-  {
-    title: "HiKOKI NR90GC1 Druckluft-Streifennagler",
-    brand: "HiKOKI",
-    price: 32900,
-    slug: "hikoki-nr90gc1",
-    category: "druckluft-nagler",
-  },
-  {
-    title: "Senco Finish Pro 18Mg Akku-Bradnagler",
-    brand: "Senco",
-    price: 39900,
-    slug: "senco-finishpro-18mg",
-    category: "akku-nagler",
-  },
-]
-
 const brands = [
   "HiKOKI",
   "Paslode",
@@ -136,13 +76,6 @@ const brands = [
   "Fasco",
   "Beck (LignoLoc)",
 ]
-
-function formatPrice(priceInCents: number): string {
-  return new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "EUR",
-  }).format(priceInCents / 100)
-}
 
 function HomeJsonLd() {
   const schema = {
@@ -309,69 +242,7 @@ export default function HomePage() {
       </section>
 
       {/* Bestseller */}
-      <section className="bg-[#f5f5f7] py-12 md:py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 flex items-end justify-between md:mb-12">
-            <div>
-              <h2 className="text-2xl font-bold text-[#1a1a1a] md:text-3xl">
-                Bestseller
-              </h2>
-              <p className="mt-2 text-[#6b7280]">
-                Unsere beliebtesten Produkte
-              </p>
-            </div>
-            <Link
-              href="/produkte"
-              className="hidden text-sm font-medium text-[#e94560] hover:underline sm:inline-flex sm:items-center"
-            >
-              Alle Produkte
-              <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
-            {bestseller.map((product) => (
-              <Link
-                key={product.slug}
-                href={`/produkte/${product.category}/${product.slug}`}
-                className="group rounded-xl border border-[#e5e7eb] bg-white p-4 transition-all hover:shadow-lg hover:-translate-y-0.5"
-              >
-                {/* Image placeholder */}
-                <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100">
-                  {"isLignoLoc" in product && product.isLignoLoc && (
-                    <span className="absolute left-2 top-2 rounded-full bg-[#ecfccb] px-2 py-0.5 text-xs font-semibold text-[#2d5016]">
-                      LignoLoc
-                    </span>
-                  )}
-                </div>
-                {/* Info */}
-                <div className="mt-3">
-                  <p className="text-xs text-[#6b7280]">{product.brand}</p>
-                  <h3 className="mt-0.5 text-sm font-medium text-[#1a1a1a] line-clamp-2 group-hover:text-[#e94560]">
-                    {product.title}
-                  </h3>
-                  <p className="mt-2 text-lg font-bold text-[#1a1a1a]">
-                    {formatPrice(product.price)}
-                  </p>
-                  <p className="text-xs text-[#6b7280]">inkl. MwSt.</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-6 text-center sm:hidden">
-            <Link
-              href="/produkte"
-              className="inline-flex items-center text-sm font-medium text-[#e94560]"
-            >
-              Alle Produkte ansehen
-              <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HomeBestsellers />
 
       {/* LignoLoc Feature Section */}
       <section className="bg-gradient-to-br from-[#2d5016] to-[#1a3a0a] py-12 md:py-16 lg:py-20">
