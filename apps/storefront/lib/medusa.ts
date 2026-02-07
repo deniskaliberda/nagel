@@ -4,7 +4,7 @@ interface RequestOptions {
   method?: string
   body?: unknown
   headers?: Record<string, string>
-  next?: NextFetchRequestConfig
+  next?: { revalidate?: number | false; tags?: string[] }
 }
 
 async function medusaRequest<T>(path: string, options: RequestOptions = {}): Promise<T> {

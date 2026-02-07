@@ -1,0 +1,7 @@
+apps/backend
+data/products
+*.md
+!README.md
+.env
+.env.*
+!.env.example
